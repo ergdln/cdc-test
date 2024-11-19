@@ -1,0 +1,30 @@
+docker-compose exec postgres psql -U postgres -d postgres
+
+
+('Cadeira Gamer', 'Cadeira confortável para longas sessões de jogo', 450.00),
+('Mouse Wireless', 'Mouse sem fio com alta precisão', 80.00);
+
+-- Inserir mais usuários
+INSERT INTO commerce.users (username, password)
+VALUES 
+('john_doe', 'senha123');,
+('jane_smith', 'segura456'),
+('admin_user', 'adminpass');
+
+-- Atualizar o preço de um produto
+UPDATE commerce.products
+SET price = 999.99
+WHERE name = 'Laptop';
+
+-- Atualizar a senha de um usuário
+UPDATE commerce.users
+SET password = 'nova_senha'
+WHERE username = 'john_doe';
+
+-- Deletar um produto
+DELETE FROM commerce.products
+WHERE name = 'Mouse Wireless';
+
+-- Deletar um usuário
+DELETE FROM commerce.users
+WHERE username = 'jane_smith';
