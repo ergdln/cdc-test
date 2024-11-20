@@ -63,15 +63,19 @@ def gen_user_product_data(num_records: int) -> None:
             "dbname='postgres' user='postgres' host='postgres' password='postgres'"
         )
         curr = conn.cursor()
-        curr.execute(
-            "INSERT INTO commerce.users (id, username, password) VALUES (%s, %s, %s)",
-            (id, fake.user_name(), fake.password()),
-        )
-        curr.execute(
-            "INSERT INTO commerce.products (id, name, description, price) VALUES (%s, %s, %s, %s)",
-            (id, fake.name(), fake.text(), fake.random_int(min=1, max=100)),
-        )
-        conn.commit()
+        
+        try:
+            curr.execute(
+                "INSERT INTO commerce.users (id, username, password) VALUES (%s, %s, %s)",
+                (id, fake.user_name(), fake.password()),
+            )
+            curr.execute(
+                "INSERT INTO commerce.products (id, name, description, price) VALUES (%s, %s, %s, %s)",
+                (id, fake.name(), fake.text(), fake.random_int(min=1, max=100)),
+            )
+            conn.commit()
+        except Exception as e:
+            print(e)
 
         sleep(0.5)
         # update 10 % of the time
