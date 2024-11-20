@@ -1,4 +1,5 @@
-package scr.main.java;
+package org.cdc;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.kafka.common.serialization.Serdes;
@@ -9,8 +10,10 @@ import org.apache.kafka.streams.kstream.KStream;
 
 import java.util.Properties;
 
-public class KafkaStreamsApp {
+public class App {
     public static void main(String[] args) {
+        System.out.println("Starting Kafka Streams application...");
+
         // Configurações do Kafka Streams
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "debezium-streams-app");
